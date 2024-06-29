@@ -1,0 +1,26 @@
+.floatingButton {
+    z-index: 3;
+    bottom: 20px;
+    left: 50%;
+    transform: translateY(5%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #695acdcc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.floatingButton:hover {
+    background-color: #afc8dd;
+    transform: scale(1.1);
+}
+
+.icon {
+    font-size: 24px;
+}

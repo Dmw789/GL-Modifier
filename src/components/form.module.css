@@ -1,9 +1,9 @@
 .formContainer {
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 40px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: 100%;
+    width: 30%;
 }
 
 .formContainer form div {
@@ -25,11 +25,4 @@
 .formContainer .buttons {
     display: flex;
     justify-content: space-between;
-}
-
-.formContainer button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
 }

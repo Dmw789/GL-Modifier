@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from './button';
 import styles from './form.module.css';
 
 interface FormData {
@@ -93,8 +94,8 @@ const Form: React.FC = () => {
           />
         </div>
         <div className={styles.buttons}>
-          <button type="button" onClick={handleRegenerate}>Regenerate</button>
-          <button type="submit">Submit</button>
+          <Button/>
+          <Button/>
         </div>
       </form>
     </div>

@@ -1,10 +1,11 @@
 
 .previewContainer {
+    margin-left:5%;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 25px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    width: 100%;
+    width: 40%;
     text-align: center;
 }
   
