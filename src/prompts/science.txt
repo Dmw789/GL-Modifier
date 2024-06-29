@@ -1,0 +1,3 @@
+1. Maintain the same concept, but reduce the difficulty of the problem if going from a higher grade level to a lower grade level.
+2. Do not explain the problem.
+3. Restate the question in a simpler form that a lower-grade student will understand.
