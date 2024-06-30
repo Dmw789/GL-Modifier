@@ -4,6 +4,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .formContainer form div {
     margin-bottom: 15px;
@@ -12,11 +13,26 @@
     display: block;
     margin-bottom: 5px;
 }
-.formContainer input[type="text"],
-.formContainer input[type="file"] {
+.formContainer input[type="text"]{
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(96, 114, 122, 0.25);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.formContainer input[type="file"]{
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.formContainer select{
+    width: 40%;
+    padding: 2px;
+    border-radius: 10px;
+    border: 2px solid rgba(96, 114, 122, 0.25);
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .formContainer .buttons {
     display: flex;
@@ -27,6 +43,10 @@
 .formHeader {
     text-align: center;
     padding-top: 20px;
+    font-family: "Fredoka One";
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: rgb(150, 166, 232);
 }
 
 .gradeLevelContainer {

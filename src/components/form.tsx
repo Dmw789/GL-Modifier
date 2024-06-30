@@ -17,13 +17,13 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ onFileUpload }) => {
   const gradeLevels = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-  const subjects = ['english', 'science', 'math'];
+  const subjects = ['English', 'Science', 'Math'];
 
   const [formData, setFormData] = useState<FormData>({
     openAIKey: '',
     fromGradeLevel: '2',
     toGradeLevel: '1',
-    subject: 'english',
+    subject: 'English',
     file: null,
     additionalConsiderations: ''
   });

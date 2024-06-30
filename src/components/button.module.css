@@ -6,7 +6,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #9cbeedcc;
+    background-color: rgb(150, 166, 232);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +17,7 @@
 }
 
 .floatingButton:hover {
-    background-color: #acdaff;
+    background-color: #8eccff;
     transform: scale(1.1);
 }
 
