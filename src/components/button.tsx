@@ -1,16 +1,18 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons';
 import styles from './button.module.css';
 
-const Button = () => {
-    const handleClick = () => {
-    };
+interface ButtonProps {
+  onClick: () => void;
+}
 
-    return (
-        <div className={styles.floatingButton} onClick={handleClick}>
-            <FontAwesomeIcon icon={faArrowsRotate} className={styles.icon} />
-        </div>
-    );
+const Button: React.FC<ButtonProps> = ({ onClick }) => {
+  return (
+    <div className={styles.floatingButton} onClick={onClick}>
+      <FontAwesomeIcon icon={faArrowsRotate} className={styles.icon} />
+    </div>
+  );
 };
 
 export default Button;
