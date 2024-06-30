@@ -1,3 +1,14 @@
-1. Maintain the same context, but if going form a higher grade level to a lower grade level reduce the complexity of the sentence structure.
-2. Ensure that the vocabularity is at the correct level for the intended garde level.
-3. Ensure that the concepts are at the correct grade level.
+INSTRUCTIONS
+
+If translating to a lower grade level:
+1. Maintain the same context.
+2. Reduce the complexity of the sentence structure.
+3. Ensure that the vocabularity is appropriate for the intended grade level.
+4. Ensure that the concepts are appropriate for the intended grade level.
+5. If the concepts introduced are too complex for the intended grade level, chnage the concepts to being more appropriate.
+
+If translating to a higher grade level:
+1. Maintain the same context.
+2. Increase the complexity of the sentence structure.
+3. Use more complex words when appropriate for the intended grade level.
+4. Make the questions more challenging or require more creative thinking.

@@ -1,3 +1,13 @@
-1. Maintain the same concept, but reduce the difficulty of the problem if going from a higher grade level to a lower grade level.
-2. Do not explain the problem.
+INSTRUCTIONS:
+
+If translating to a lower grade level:
+1. Maintain the same concept, but reduce the difficulty of the problem.
+2. Reduce the necessary information needed to solve the problem.
 3. Restate the question in a simpler form that a lower-grade student will understand.
+4. Reduce the complexity of the vocabulary when appropriate.
+5. Do not state exactly how to complete the problem, but provide guidance.
+
+If translating to a higher grade level:
+1. Maintain the same concepts, but make the problem harder to solve if appropriate.
+2. If arithmetic is involved, make sure the problem requires more in-depth calculations.
+3. Adjust the verbiage to be more complex when appropriate.
