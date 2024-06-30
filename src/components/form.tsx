@@ -126,7 +126,6 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
       const notes = formData.additionalConsiderations;
   
       const instruction = `${generalText}\n\n${detailText}\n\nAdditional notes from the teacher: ${notes}`;
-      console.log(instruction);
   
       const problem = `Convert the following homework assignment from grade ${formData.fromGradeLevel} to grade ${formData.toGradeLevel}`;
       const fileContent = await readFileContent(formData.file);
