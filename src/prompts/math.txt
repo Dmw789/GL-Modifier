@@ -1,4 +1,5 @@
 INSTRUCTIONS:
-1. Maintain the same concepts, but if going from an higher grade level to a lower one, reduce the difficulty of the problem.
+1. Maintain the same concepts, but if going from a higher grade level to a lower one, reduce the difficulty of the problem.
 2. If a word problem is presented and you are going from a higher grade level to a lower one, alter the verbiage to be more easily readable.
 3. Output the answer to all questions in an answer key.
+4. If going to a lower level creates an easier-to-solve problem.
