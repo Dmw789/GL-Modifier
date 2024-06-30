@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import React from 'react';
 import styles from './preview.module.css';
+import PdfViewer from './pdfViewer';
 
-const Preview = () => {
-  const [imageSrc, setImageSrc] = useState('path/to/your/image.png'); // Set default image path
+interface PreviewProps {
+  file: string | null;
+}
 
+const Preview: React.FC<PreviewProps> = ({ file }) => {
   return (
     <div className={styles.previewContainer}>
       <h2>Preview</h2>
-      <img src={imageSrc} alt="Preview" className={styles.previewImage} />
+      {file ? <PdfViewer file={file} /> : <p>No preview available</p>}
     </div>
   );
 };

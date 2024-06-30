@@ -10,7 +10,11 @@ interface FormData {
   additionalConsiderations: string;
 }
 
-const Form: React.FC = () => {
+interface FormProps {
+  onFileUpload: (file: File) => void;
+}
+
+const Form: React.FC<FormProps> = ({ onFileUpload }) => {
   const [formData, setFormData] = useState<FormData>({
     openAIKey: '',
     intendedGL: '',
@@ -28,26 +32,32 @@ const Form: React.FC = () => {
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({
-        ...formData,
-        file: e.target.files[0]
-      });
+    const file = e.target.files ? e.target.files[0] : null;
+    setFormData({
+      ...formData,
+      file: file
+    });
+    if (file) {
+      onFileUpload(file);
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Add your form submission logic here
     console.log('Form submitted:', formData);
   };
 
   const handleRegenerate = () => {
-    // Add your regenerate logic here
+    console.log('Regenerate clicked');
+  };
+
+  const handleDownload = () => {
+    console.log('Download clicked');
   };
 
   return (
     <div className={styles.formContainer}>
+      <h1 className={styles.formHeader}>Grade Level Modifier</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>OpenAI Key</label>
@@ -56,6 +66,7 @@ const Form: React.FC = () => {
             name="openAIKey"
             value={formData.openAIKey}
             onChange={handleChange}
+            placeholder="Enter your OpenAI Key"
           />
         </div>
         <div>
@@ -65,6 +76,7 @@ const Form: React.FC = () => {
             name="intendedGL"
             value={formData.intendedGL}
             onChange={handleChange}
+            placeholder="Enter Grade Level"
           />
         </div>
         <div>
@@ -74,15 +86,12 @@ const Form: React.FC = () => {
             name="subject"
             value={formData.subject}
             onChange={handleChange}
+            placeholder="Enter Subject"
           />
         </div>
         <div>
           <label>File</label>
-          <input
-            type="file"
-            name="file"
-            onChange={handleFileChange}
-          />
+          <input type="file" onChange={handleFileChange} />
         </div>
         <div>
           <label>Additional Considerations</label>
@@ -91,11 +100,12 @@ const Form: React.FC = () => {
             name="additionalConsiderations"
             value={formData.additionalConsiderations}
             onChange={handleChange}
+            placeholder="Enter any additional considerations"
           />
         </div>
         <div className={styles.buttons}>
-          <Button/>
-          <Button/>
+          <Button onClick={handleRegenerate}/>
+          <Button onClick={handleDownload}/>
         </div>
       </form>
     </div>

@@ -1,28 +1,30 @@
 .formContainer {
     background-color: #f0f0f0;
-    padding: 40px;
+    padding: 0 40px;
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 30%;
 }
-
 .formContainer form div {
     margin-bottom: 15px;
 }
-
 .formContainer label {
     display: block;
     margin-bottom: 5px;
 }
-
 .formContainer input[type="text"],
 .formContainer input[type="file"] {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
 }
-
 .formContainer .buttons {
     display: flex;
+    padding: 10px 50px;
     justify-content: space-between;
+}
+
+.formHeader {
+    text-align: center;
+    padding-top: 20px;
 }

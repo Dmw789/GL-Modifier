@@ -6,10 +6,6 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     width: 40%;
+    height: 80%;
     text-align: center;
-}
-  
-.previewImage {
-    max-width: 100%;
-    height: auto;
 }
