@@ -106,12 +106,12 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
 
   const handleRegenerate = async () => {
     console.log('Regenerate clicked');
-
+  
     if (!formData.file) {
       console.error('No file selected');
       return;
     }
-
+  
     try {
       const generalResponse = await fetch('/general.txt');
       const subjectFiles: { [key: string]: string } = {
@@ -120,17 +120,18 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
         'English': '/english.txt'
       };
       const detailResponse = await fetch(subjectFiles[formData.subject]);
-      const noteResponse = await fetch(formData.additionalConsiderations);
-
+  
       const generalText = await generalResponse.text();
       const detailText = await detailResponse.text();
-      const notes = await noteResponse.text();
-      const instruction = `${generalText}\n\n${detailText}\n\n${notes}`;
-
+      const notes = formData.additionalConsiderations;
+  
+      const instruction = `${generalText}\n\n${detailText}\n\nAdditional notes from the teacher: ${notes}`;
+      console.log(instruction);
+  
       const problem = `Convert the following homework assignment from grade ${formData.fromGradeLevel} to grade ${formData.toGradeLevel}`;
       const fileContent = await readFileContent(formData.file);
       const prompt = `${problem}\n\n${fileContent}`;
-
+  
       const response: string | null = await fetchAIResponse(instruction, prompt, formData.openAIKey);
       
       if (response) {
