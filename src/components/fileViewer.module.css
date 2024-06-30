@@ -1,0 +1,7 @@
+.docxViewerContainer {
+    width: 95%;
+    height: 400px;
+    padding: 20px;
+    overflow-y: scroll;
+    background-color: white;
+}

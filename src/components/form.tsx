@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from './button';
 import styles from './form.module.css';
+import { fetchAIResponse } from '../services/llmService';
 
 interface FormData {
   openAIKey: string;
@@ -12,7 +13,7 @@ interface FormData {
 }
 
 interface FormProps {
-  onFileUpload: (file: File) => void;
+  onFileUpload: (fileContent: string) => void;
 }
 
 const Form: React.FC<FormProps> = ({ onFileUpload }) => {
@@ -38,13 +39,32 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files ? e.target.files[0] : null;
-    setFormData({
-      ...formData,
-      file: file
-    });
-    if (file) {
-      onFileUpload(file);
+    if (file && file.type === 'text/plain') {
+      setFormData({
+        ...formData,
+        file: file
+      });
+      readFileContent(file).then((fileContent) => onFileUpload(fileContent));
+    } else {
+      alert('Please upload a valid TXT file.');
     }
+  };
+
+  const readFileContent = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          resolve(event.target.result as string);
+        } else {
+          reject('Error reading file');
+        }
+      };
+      reader.onerror = () => {
+        reject('Error reading file');
+      };
+      reader.readAsText(file);
+    });
   };
 
   const handleSubjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -58,12 +78,9 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
 
   const getToGradeOptions = () => {
     const fromIndex = gradeLevels.indexOf(formData.fromGradeLevel);
-    if (formData.subject === 'math') {
+    if (formData.subject === 'Math') {
       const options = gradeLevels.map((level, index) => {
-        if (
-          index === fromIndex - 1 ||
-          index === fromIndex + 1
-        ) {
+        if (index === fromIndex - 1 || index === fromIndex + 1) {
           return <option key={level} value={level}>{level}</option>;
         }
         return (
@@ -87,8 +104,42 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
     console.log('Form submitted:', formData);
   };
 
-  const handleRegenerate = () => {
+  const handleRegenerate = async () => {
     console.log('Regenerate clicked');
+
+    if (!formData.file) {
+      console.error('No file selected');
+      return;
+    }
+
+    try {
+      const generalResponse = await fetch('/general.txt');
+      const subjectFiles: { [key: string]: string } = {
+        'Math': '/math.txt',
+        'Science': '/science.txt',
+        'English': '/english.txt'
+      };
+      const detailResponse = await fetch(subjectFiles[formData.subject]);
+
+      const generalText = await generalResponse.text();
+      const detailText = await detailResponse.text();
+      const instruction = `${generalText}\n\n${detailText}`;
+
+      const problem = `Convert the following homework assignment from grade ${formData.fromGradeLevel} to grade ${formData.toGradeLevel}`;
+      const fileContent = await readFileContent(formData.file);
+      const prompt = `${problem}\n\n${fileContent}`;
+
+      const response: string | null = await fetchAIResponse(instruction, prompt, formData.openAIKey);
+      
+      if (response) {
+        console.log('AI Response:', response);
+        onFileUpload(response);
+      } else {
+        console.error('No response from AI');
+      }
+    } catch (err) {
+      console.error('Error:', err);
+    }
   };
 
   return (
@@ -147,7 +198,7 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
         </div>
         <div>
           <label>File</label>
-          <input type="file" onChange={handleFileChange} />
+          <input type="file" accept=".txt" onChange={handleFileChange} />
         </div>
         <div>
           <label>Additional Considerations</label>
@@ -160,7 +211,7 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
           />
         </div>
         <div className={styles.buttons}>
-          <Button onClick={handleRegenerate}/>
+          <Button onClick={handleRegenerate} />
         </div>
       </form>
     </div>

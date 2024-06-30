@@ -47,6 +47,8 @@
     font-weight: 200;
     letter-spacing: 1px;
     color: rgb(150, 166, 232);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
 .gradeLevelContainer {

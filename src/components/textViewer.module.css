@@ -1,0 +1,10 @@
+.textViewerContainer {
+    width: 100%;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    padding: 10px;
+    text-align: left;
+  }
+  
