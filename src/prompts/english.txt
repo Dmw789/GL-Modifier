@@ -1,0 +1,3 @@
+1. Maintain the same context, but if going form a higher grade level to a lower grade level reduce the complexity of the sentence structure.
+2. Ensure that the vocabularity is at the correct level for the intended garde level.
+3. Ensure that the concepts are at the correct grade level.
