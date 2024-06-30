@@ -4,7 +4,8 @@ import styles from './form.module.css';
 
 interface FormData {
   openAIKey: string;
-  intendedGL: string;
+  fromGradeLevel: string;
+  toGradeLevel: string;
   subject: string;
   file: File | null;
   additionalConsiderations: string;
@@ -15,15 +16,19 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onFileUpload }) => {
+  const gradeLevels = ['K', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  const subjects = ['english', 'science', 'math'];
+
   const [formData, setFormData] = useState<FormData>({
     openAIKey: '',
-    intendedGL: '',
-    subject: '',
+    fromGradeLevel: '2',
+    toGradeLevel: '1',
+    subject: 'english',
     file: null,
     additionalConsiderations: ''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -42,6 +47,41 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
     }
   };
 
+  const handleSubjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    setFormData({
+      ...formData,
+      subject: value,
+      toGradeLevel: "1"
+    });
+  };
+
+  const getToGradeOptions = () => {
+    const fromIndex = gradeLevels.indexOf(formData.fromGradeLevel);
+    if (formData.subject === 'math') {
+      const options = gradeLevels.map((level, index) => {
+        if (
+          index === fromIndex - 1 ||
+          index === fromIndex + 1
+        ) {
+          return <option key={level} value={level}>{level}</option>;
+        }
+        return (
+          <option key={level} value={level} disabled>
+            {level}
+          </option>
+        );
+      });
+      return options;
+    } else {
+      return gradeLevels.map((level) => (
+        <option key={level} value={level} disabled={level === formData.fromGradeLevel}>
+          {level}
+        </option>
+      ));
+    }
+  };
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
@@ -49,10 +89,6 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
 
   const handleRegenerate = () => {
     console.log('Regenerate clicked');
-  };
-
-  const handleDownload = () => {
-    console.log('Download clicked');
   };
 
   return (
@@ -69,25 +105,45 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
             placeholder="Enter your OpenAI Key"
           />
         </div>
-        <div>
-          <label>Intended Grade Level</label>
-          <input
-            type="text"
-            name="intendedGL"
-            value={formData.intendedGL}
-            onChange={handleChange}
-            placeholder="Enter Grade Level"
-          />
+        <div className={styles.gradeLevelContainer}>
+          <div>
+            <label>From Grade Level</label>
+            <select
+              name="fromGradeLevel"
+              value={formData.fromGradeLevel}
+              onChange={handleChange}
+            >
+              {gradeLevels.map((level) => (
+                <option key={level} value={level}>
+                  {level}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>To Grade Level</label>
+            <select
+              name="toGradeLevel"
+              value={formData.toGradeLevel}
+              onChange={handleChange}
+            >
+              {getToGradeOptions()}
+            </select>
+          </div>
         </div>
         <div>
           <label>Subject</label>
-          <input
-            type="text"
+          <select
             name="subject"
             value={formData.subject}
-            onChange={handleChange}
-            placeholder="Enter Subject"
-          />
+            onChange={handleSubjectChange}
+          >
+            {subjects.map((subject) => (
+              <option key={subject} value={subject}>
+                {subject}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label>File</label>
@@ -105,7 +161,6 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
         </div>
         <div className={styles.buttons}>
           <Button onClick={handleRegenerate}/>
-          <Button onClick={handleDownload}/>
         </div>
       </form>
     </div>

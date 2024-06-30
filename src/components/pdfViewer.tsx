@@ -21,8 +21,8 @@ const PdfViewer: React.FC<PdfViewerProps> = ({ file }) => {
             defaultScale={SpecialZoomLevel.PageFit}
             initialPage={1}
           />
-          <Toolbar />
         </Worker>
+        <Toolbar />
     </div>
   );
 };

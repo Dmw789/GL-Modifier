@@ -21,10 +21,24 @@
 .formContainer .buttons {
     display: flex;
     padding: 10px 50px;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .formHeader {
     text-align: center;
     padding-top: 20px;
+}
+
+.gradeLevelContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gradeLevelContainer div {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.gradeLevelContainer div:last-child {
+    margin-right: 0;
 }
