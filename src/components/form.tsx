@@ -120,10 +120,12 @@ const Form: React.FC<FormProps> = ({ onFileUpload }) => {
         'English': '/english.txt'
       };
       const detailResponse = await fetch(subjectFiles[formData.subject]);
+      const noteResponse = await fetch(formData.additionalConsiderations);
 
       const generalText = await generalResponse.text();
       const detailText = await detailResponse.text();
-      const instruction = `${generalText}\n\n${detailText}`;
+      const notes = await noteResponse.text();
+      const instruction = `${generalText}\n\n${detailText}\n\n${notes}`;
 
       const problem = `Convert the following homework assignment from grade ${formData.fromGradeLevel} to grade ${formData.toGradeLevel}`;
       const fileContent = await readFileContent(formData.file);

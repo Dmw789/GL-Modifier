@@ -3,9 +3,10 @@ INSTRUCTIONS
 If translating to a lower grade level:
 1. Maintain the same context.
 2. Reduce the complexity of the sentence structure.
-3. Ensure that the vocabularity is appropriate for the intended grade level.
+3. Ensure that the vocabulary is appropriate for the intended grade level.
 4. Ensure that the concepts are appropriate for the intended grade level.
 5. If the concepts introduced are too complex for the intended grade level, chnage the concepts to being more appropriate.
+6. Use words and sentences that are appropriate for the intended grade level.
 
 If translating to a higher grade level:
 1. Maintain the same context.
